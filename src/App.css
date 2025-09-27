@@ -1,0 +1,190 @@
+/* ==================== Base ==================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f6f0f8, #e0d7f5);
+}
+
+/* ==================== Heading ==================== */
+/* ==================== Heading ==================== */
+.heading {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.heading h1 {
+  font-size: clamp(28px, 5vw, 48px); /* responsive font size */
+  font-weight: 900;
+  color: #5128ca;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+/* ==================== Rules Section ==================== */
+.rule {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.rule h3 {
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 600;
+  color: #343a40;
+}
+
+/* ==================== Rule Colors ==================== */
+.green {
+  color: #28a745;  /* correct spot */
+  font-weight: bold;
+}
+
+.yellow {
+  color: #ffc107;  /* present spot */
+  font-weight: bold;
+}
+
+.grey {
+  color: #6c757d;  /* absent spot */
+  font-weight: bold;
+}
+
+/* ==================== Responsive adjustments ==================== */
+@media (max-width: 600px) {
+  .rule {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+}
+
+/* ==================== Board ==================== */
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 90%;
+  padding: 10px;
+}
+
+.line {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+}
+
+.tile {
+  flex: 1 1 50px;
+  max-width: 45px;
+  aspect-ratio: 1;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+/* ✅ Correct spot (green) */
+.tile.correct {
+  background: #28a745;
+  color: white;
+  border-color: #28a745;
+}
+
+/* 🟡 Wrong spot (yellow) */
+.tile.present {
+  background: #ffc107;
+  color: white;
+  border-color: #ffc107;
+}
+
+/* ⚫ Not in word (gray) */
+.tile.absent {
+  background: #7d756c;
+  color: white;
+  border-color: #6c757d;
+}
+
+/* ==================== Game Over ==================== */
+.game-over {
+  padding: 20px;
+  margin: 20px auto;
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: bold;
+  text-align: center;
+  background-color: #f8f9fa;
+  border: 2px solid #343a40;
+  border-radius: 12px;
+  color: #343a40;
+  max-width: 50%;   
+}
+
+/* Winning word */
+.solution {
+  color: #198754;
+  font-weight: bold;
+}
+
+/* ==================== Confetti 🎉 ==================== */
+.confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  background: red;
+  animation: fall 3s linear infinite;
+  opacity: 0.8;
+}
+
+.confetti-piece:nth-child(2n) { background: #ffc107; animation-duration: 4s; }
+.confetti-piece:nth-child(3n) { background: #0d6efd; animation-duration: 5s; }
+.confetti-piece:nth-child(4n) { background: #198754; }
+.confetti-piece:nth-child(5n) { background: #6f42c1; }
+
+@keyframes fall {
+  0% { transform: translateY(-100%) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(720deg); }
+}
+
+/* ==================== Clapping Animation 👏 ==================== */
+.clap {
+  font-size: clamp(30px, 5vw, 50px);
+  display: inline-block;
+  margin: 5px;
+  animation: clap 0.6s infinite alternate;
+}
+
+@keyframes clap {
+  0%   { transform: scale(1) rotate(0deg); }
+  50%  { transform: scale(1.2) rotate(-15deg); }
+  100% { transform: scale(1) rotate(15deg); }
+}
+
+/* ==================== Responsive adjustments ==================== */
+@media (max-width: 600px) {
+  .tile { max-width: 40px; font-size: 18px; }
+  .game-over { font-size: 18px; padding: 15px; }
+  .heading h1 { font-size: 28px; }
+}
